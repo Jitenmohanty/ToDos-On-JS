@@ -1,0 +1,107 @@
+body{
+    margin: 0;
+    padding: 0;
+    font-family: Arial;
+    
+}
+
+.upper{
+background-color:black;
+height: 50px;
+width: auto;
+padding: 0px;
+margin: 0px;
+
+}
+ul{
+    overflow: hidden;
+}
+li{ 
+    display: inline-block;
+    padding: 12px;
+    font-weight: bold;
+}
+li a{
+text-align: center;
+color: white;
+text-decoration: none;
+font-size: 22px;
+}
+.card-body{
+    border:  2px solid rgb(230, 225, 225) ;
+    margin: 10px 20px;
+   /* display: inline-block;*/
+    
+}
+
+#addBtn{
+    background-color: black;
+    color: chartreuse;
+    height: 40px;
+    width: 120px;
+    font-size: 15px;
+    border-radius: 10px;
+    
+}
+
+#addBtn:hover{
+    background-color: rgba(204, 42, 155, 0.521);
+    box-shadow: darkturquoise;
+}
+.card-body{
+    padding:5px 55px;
+}
+h1{
+    padding:0px 20px ;
+}
+.upper form{
+    display: inline-block;
+position: absolute;
+right: 34px;
+top: 26px;
+}
+.formsearch{
+    background-color: aqua;
+    height: 30px;
+    
+}
+.btnn{
+    background-color: black;
+    height: 28px;
+    color: chartreuse;
+    border-radius: 10px;
+}
+.btnn:hover{
+    background-color: darksalmon;
+    cursor: pointer;
+    
+}
+ .dbtn button{
+    background-color: black;
+    color: chartreuse;
+    height: 40px;
+    width: 120px;
+    font-size: 15px;
+    border-radius: 10px;
+    cursor: pointer;
+ }
+ .dbtn button:hover{
+    background-color: rgba(204, 42, 155, 0.521);
+    box-shadow: darkturquoise;
+ }
+ .dbtn{
+     display: flex;
+     flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: center;
+ }
+
+ 
+ .card-body textarea{
+     font-family: Georgia, 'Times New Roman', Times, serif;
+    
+     font-size: 20px;
+ }
+
+
+    

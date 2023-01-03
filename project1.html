@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Notes App/Website.</title>
+    <link rel="stylesheet" href="project1.css">
+    
+</head>
+
+<body>
+
+   
+<div class="upper">
+    <ul>
+        <li><a href="#">MagicNote</a></li>
+        <li><a href="#">Home</a></li> 
+    </ul>
+    <form class="search">
+        <input class="formsearch" id="searchTxt" type="search" placeholder="Enter For Search" aria-label="Search">
+        <button class="btnn" type="submit" >Search</button>
+    </form>
+</div>
+
+    <div class="container my-3">
+        <!--y dirrection margin set .it is abootstrap component -->
+        <h1>Welcome To Magic Notes</h1>
+        <div class="card">
+            <div class="card-body">
+                <h3>Add Tittle</h3>
+                <textarea name="tittle" id="addtitle" cols="20" rows="2" placeholder="Add Tittle"></textarea>
+                <h3 class="card-title">Add a Note</h3>
+                <div class="form-group">
+                    <textarea class="form-control" id="addTxt" rows="4" cols="30" ></textarea>
+                </div>
+                <button class="btn btn-primary" id="addBtn" >Add Note</button>
+            </div>
+        </div>
+        <hr>
+        <h1>Your Notes</h1>
+        <hr>
+        
+        <div id="notes" class="dbtn"> </div>
+    
+    </div>
+
+    <script src="project1.js"></script>
+</body>
+
+</html>

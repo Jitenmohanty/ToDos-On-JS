@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Notes App/Website.</title>
+    <link rel="stylesheet" href="project1.css">
+
+</head>
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        font-family: Arial;
+        font-size: 2rem;
+
+    }
+    .textareain{
+        width: 80%;
+        height:10rem ;
+    }
+    .dbtn .noteCard{
+        text-decoration: aqua;
+    }
+    #addtitle{
+        font-weight: bold;
+    }
+    @media (max-width:600px) {
+          body{
+            font-size: larger;
+          }
+          h1{
+            font-size: 2rem;
+          }
+          .card-body{
+            font-size: 1rem;
+          }
+
+        .textareain{
+        width: 280px;
+        }
+        
+        .formsearch{
+            display: none;
+        }
+        .btnn{
+            display: none;
+        }
+        
+    }
+
+    .upper {
+        background-color: black;
+        height: 50px;
+        width: auto;
+        padding: 0px;
+        margin: 0px;
+
+    }
+
+    ul {
+        overflow: hidden;
+    }
+
+    li {
+        display: inline-block;
+        padding: 12px;
+        font-weight: bold;
+    }
+
+    li a {
+        text-align: center;
+        color: white;
+        text-decoration: none;
+        font-size: 22px;
+    }
+
+    .card-body {
+        border: 2px solid rgb(230, 225, 225);
+        margin: 10px 20px;
+        font-size: 1.65rem;
+
+    }
+
+    #addBtn {
+        background-color: black;
+        color: chartreuse;
+        height: 40px;
+        width: 120px;
+        font-size: 15px;
+        border-radius: 10px;
+
+    }
+
+    #addBtn:hover {
+        background-color: rgba(204, 42, 155, 0.521);
+        box-shadow: darkturquoise;
+    }
+
+    .card-body {
+        padding: 5px 55px;
+    }
+
+    h1 {
+        padding: 0px 20px;
+    }
+
+    .upper form {
+        display: inline-block;
+        position: absolute;
+        right: 34px;
+        top: 26px;
+    }
+
+    .formsearch {
+        background-color: aqua;
+        height: 30px;
+
+    }
+
+    .btnn {
+        background-color: black;
+        height: 28px;
+        color: chartreuse;
+        border-radius: 10px;
+    }
+
+    .btnn:hover {
+        background-color: darksalmon;
+        cursor: pointer;
+
+    }
+
+    .dbtn button {
+        background-color: black;
+        color: chartreuse;
+        height: 40px;
+        width: 120px;
+        font-size: 15px;
+        border-radius: 10px;
+        cursor: pointer;
+    }
+
+    .dbtn button:hover {
+        background-color: rgba(204, 42, 155, 0.521);
+        box-shadow: darkturquoise;
+    }
+
+    .dbtn {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+
+    .card-body textarea {
+        font-family: Georgia, 'Times New Roman', Times, serif;
+
+        font-size: 20px;
+    }
+</style>
+
+<body>
+
+
+    <div class="upper">
+        <ul>
+            <li><a href="#">MagicNote</a></li>
+            <li><a href="#">Home</a></li>
+        </ul>
+        <form class="search">
+            <input class="formsearch" id="searchTxt" type="search" placeholder="Enter For Search" aria-label="Search">
+            <button class="btnn" type="submit">Search</button>
+        </form>
+    </div>
+
+    <div class="container my-3">
+        <!--y dirrection margin set .it is abootstrap component -->
+        <h1>Welcome To Magic Notes</h1>
+        <div class="card">
+            <div class="card-body">
+                <h3>Add Tittle</h3>
+                <textarea name="tittle" id="addtitle" cols="20" rows="2" placeholder="Add Tittle" ></textarea>
+                <h3 class="card-title">Add a Note</h3>
+                <div class="form-group">
+                    <textarea class="textareain" id="addTxt" rows="4" cols="30"></textarea>
+                </div>
+                <button class="btn btn-primary" id="addBtn">Add Note</button>
+            </div>
+        </div>
+        <hr>
+        <h1>Your Notes</h1>
+        <hr>
+
+        <div id="notes" class="dbtn"> </div>
+
+    </div>
+
+    <script>
+        console.log("Welcome to notes app. This is app.js");
+        showNotes();
+        let addBtn = document.getElementById("addBtn");
+        addBtn.addEventListener("click", function (e) {
+            let addTxt = document.getElementById("addTxt");
+            let addtitle = document.getElementById("addtitle");
+            let notes = localStorage.getItem("notes");
+            if (notes == null) {
+                notesObj = [];
+            } else {
+                notesObj = JSON.parse(notes);
+            }
+            let myobj = {
+                title: addtitle.value,
+                text: addTxt.value
+            }
+            notesObj.push(myobj);
+            localStorage.setItem("notes", JSON.stringify(notesObj));
+            addTxt.value = "";
+            addtitle.value = "";
+
+            showNotes();
+        });
+
+
+        function showNotes() {
+            let notes = localStorage.getItem("notes");
+            if (notes == null) {
+                notesObj = [];
+            } else {
+                notesObj = JSON.parse(notes);
+            }
+            let html = "";
+            notesObj.forEach(function (element, index) {
+                html += `
+            <div  class="noteCard" style="width: 18rem;">
+                    <div class="card-body">
+                        <h5 class="card-title"> ${element.title}</h5>
+                        <hr>
+                        <p class="card-text"> ${element.text}</p>
+                        <button id="${index}"onclick="deleteNote(this.id)" class="btn">Delete Note</button>
+                    </div>
+                </div>`;
+            });
+            let notesElm = document.getElementById("notes");
+            if (notesObj.length != 0) {
+                notesElm.innerHTML = html;
+            } else {
+                notesElm.innerHTML = ` Nothing to show! Use "Add a Note" section above to add notes.`;
+            }
+        }
+
+
+        function deleteNote(index) {
+            
+
+            let notes = localStorage.getItem("notes");
+            if (notes == null) {
+                notesObj = [];
+            } else {
+                notesObj = JSON.parse(notes);
+            }
+
+            notesObj.splice(index, 1);
+            localStorage.setItem("notes", JSON.stringify(notesObj));//
+            showNotes();
+        }
+
+
+        let search = document.getElementById('searchTxt');
+        search.addEventListener("input", function () {
+
+            let inputVal = search.value.toLowerCase();
+
+            let noteCards = document.getElementsByClassName('noteCard');
+            Array.from(noteCards).forEach(function (element) {
+                let cardTxt = element.getElementsByTagName("p")[0].innerText;
+                if (cardTxt.includes(inputVal)) {
+                    element.style.display = "block";
+                }
+                else {
+                    element.style.display = "none";
+                }
+
+            })
+        })
+    </script>
+</body>
+
+</html>
